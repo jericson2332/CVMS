@@ -1,0 +1,29 @@
+/* Make the page scrollable */
+html, body {
+  height: 100%;
+  overflow-y: auto; /* allow vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth momentum scrolling on iOS */
+  
+  /* Hide scrollbar but keep scroll */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Hide scrollbar for WebKit browsers */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollable {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.scrollable::-webkit-scrollbar {
+  display: none;
+}
+
+ul{
+    padding-left: 0px;
+}

@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "docxtemplater": "^3.66.2",
+    "html-to-image": "^1.11.13",
+    "html2canvas": "^1.4.1",
+    "jspdf": "^4.2.1",
+    "pizzip": "^3.2.0",
+    "react-device-detect": "^2.2.3"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}

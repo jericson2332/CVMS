@@ -1,0 +1,54 @@
+This file structure follows the Feature-Based Architecture (often called "Bulletproof React"). It is currently considered the industry standard for professional React development because it keeps code modular, scalable, and easy to maintain as the project grows.
+
+1. The Visual Map
+Here is a complete, production-ready directory tree:
+my-app/
+├── public/                 # Static assets (favicons, robots.txt, index.html)
+├── src/
+│   ├── api/                # Global API configuration (Axios instances, interceptors)
+│   ├── assets/             # Static files (images, icons, fonts)
+│   ├── components/         # Shared UI components
+│   │   ├── ui/             # "Dumb" components (Buttons, Inputs, Modals)
+│   │   └── common/         # Layout pieces (Navbar, Footer, Sidebar)
+│   ├── config/             # App settings (env variables, theme constants)
+│   ├── context/            # Global state (AuthContext, ThemeContext)
+│   ├── features/           # THE CORE: Domain-specific folders
+│   │   ├── promos/         # Example Feature: All things "Promos"
+│   │   │   ├── api/        # Promo-specific API calls
+│   │   │   ├── components/ # Promo-specific UI (PromoCard, PromoGrid)
+│   │   │   ├── hooks/      # Promo-specific logic (usePromos)
+│   │   │   └── utils/      # Helper functions for promos only
+│   │   └── auth/           # Login, Signup, Session logic
+│   ├── hooks/              # Global reusable hooks (useDebounce, useAuth)
+│   ├── layouts/            # Page structure templates (MainLayout, AuthLayout)
+│   ├── pages/              # Route components (Home.jsx, Settings.jsx)
+│   ├── routes/             # Navigation and protected route logic
+│   ├── styles/             # Global CSS/Tailwind config
+│   ├── utils/              # General helpers (formatters, validators)
+│   ├── App.jsx             # Entry point for Providers and Router
+│   └── main.jsx            # Entry point for React DOM
+├── .env                    # Secret API keys and Backend URLs
+├── tailwind.config.js      # CSS framework configuration
+└── package.json            # Dependencies and scripts
+
+
+
+2. Detailed Breakdown
+src/features/ (The Heart)
+Instead of putting all your hooks in one folder and all components in another, you group them by domain.
+
+-> Why? If you need to fix a bug in the "Promos" section, you only look inside the promos folder. If you decide to delete the "Promos" feature, you just delete that one folder without breaking the rest of the app.
+
+src/components/ui/ vs common/
+-> ui/: These are the smallest building blocks (Atomic Design). They are "stateless" components like a custom <Button /> or <Input />.
+
+-> common/: These are shared components that define the app's look, such as a Navbar or a Footer.
+
+src/api/
+-> axiosInstance.js: This is where you configure your base URL and interceptors. Interceptors can automatically attach a JWT token to every request or handle 401 (Unauthorized) errors globally.
+
+src/pages/ vs src/layouts/
+-> layouts/: These are the "frames." For example, an AuthLayout might center everything on the screen, while a MainLayout includes the sidebar and navbar.
+
+-> pages/: These components are mapped to your routes. They usually don't contain much logic; they simply import and "assemble" features and layouts.
+
