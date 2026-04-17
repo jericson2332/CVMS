@@ -1,2 +1,4 @@
 # CVMS
-First reactjs WEBSITE called "Cablevision System Corp. website" this is sample from scratch.
+First reactjs WEBSITE called "MyCV Broadband Web" this is sample from scratch.
+
+The images was taken from websites I viewed.
