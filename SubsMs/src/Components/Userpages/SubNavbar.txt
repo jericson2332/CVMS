@@ -1,0 +1,392 @@
+import { useState, useEffect } from "react";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { FaUser } from "react-icons/fa";// Install via: npm install react-icons
+import { FaChevronDown, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import logo from "../assets/3d2-Logo.png";
+import axios from 'axios'
+import './start.css'
+
+const SubNavbar = () => {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState({ services: false, more: false });
+
+    const toggleDropdown = (key) => {
+        setDropdownOpen((prev) => ({ ...prev, [key]: !prev[key] }));
+    };
+
+    // FOR TOGGLE SERVICES NAV //
+    const [servicesOpen, setServicesOpen] = useState(false)
+    const toggleServicesDropdown = () => {
+        setServicesOpen((prev) => !prev);
+    }
+    // FOR TOGGLE MORE NAV //
+    const [moreOpen, setMoreOpen] = useState(false);
+    const toggleMoreDropdown = () => {
+        setMoreOpen((prev) => !prev);
+    };
+
+    // FOR TOGGLE LOGIN NAV //
+    const [userOpen, setUserOpen] = useState(false);
+    const toggleUserDropdown = () => {
+        setUserOpen(!userOpen);
+    }
+
+    // FOR TOGGLE LOGIN NAV on mobile //
+    const [open, setOpen] = useState(false);
+
+    //LOG OUT//
+    
+    const navigate = useNavigate()
+    axios.default.withCredentials = true
+    const handleLogout = () => {
+        axios.get('http://localhost:3000/auth/subslogout')
+            .then(result => {
+                localStorage.removeItem("valid")
+                navigate('/login')
+            })
+    }
+
+    return (
+        <>
+            <nav className="bg-gray-50 text-blue-600 shadow-md text-decoration-none font-medium">
+                <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-28  ">
+                    {/* Left: CABLEVISION Logo */}
+                    <Link to="/homepage" className=" text-2xl font-bold text-white text-decoration-none">
+                        <img src={logo} alt="CableVision Logo" className="h-24 w-auto object-contain" />
+                    </Link>
+
+                    {/* Desktop Menu */}
+                    <ul className="hidden left-0 md:flex space-x-6 items-center mt-4 text-lg">
+                        <li><Link to="/homepage" className=" text-blue-600 hover:text-blue-200 text-decoration-none ">Home</Link></li>
+                        <li><Link to="/plans" className="relative inline-block  py-1 text-blue-600 
+                        transition duration-300 ease-in-out 
+                        after:content-[''] after:absolute after:left-0 after:bottom-0 
+                        after:w-0 after:h-[2px] after:bg-orange-400 
+                        hover:after:w-full after:transition-all after:duration-300 
+                        after:ease-in-out text-decoration-none">Plans</Link></li>
+
+
+                        {/* Dropdown: Services */}
+                        <li className=" relative">
+                            <div>
+                                <button
+                                    onClick={toggleServicesDropdown}
+                                    className="hover:text-orange-400 focus:outline-none flex items-center gap-1.5"
+                                >
+                                    Services
+                                    <FaChevronDown
+                                        className={`transition-transform duration-200 ${servicesOpen ? "rotate-180" : ""} text-xs mt-1.5`} />
+                                </button>
+                                {servicesOpen && (
+                                    <ul className="absolute left-0  mt-2 bg-white text-black rounded shadow w-40 z-20 text-center ">
+                                        <li>
+                                            <Link
+                                                to="channellineup"
+                                                className="block px-4 py-2 hover:bg-blue-100 text-decoration-none rounded"
+                                                onClick={() => setServicesOpen(false)} // Close on click
+                                            >
+                                                Channel Line Up
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                to="/cable"
+                                                className="block px-4 py-2 hover:bg-blue-100 text-decoration-none  rounded"
+                                                onClick={() => setServicesOpen(false)}
+                                            >
+                                                Cable
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                to="/applynow"
+                                                className="block px-4 py-2 hover:bg-blue-100 text-decoration-none  rounded"
+                                                onClick={() => setServicesOpen(false)}
+                                            >
+                                                Apply Now
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+
+                        <li><Link to="/corporate" className="relative inline-block  py-1 text-blue-600 
+                        transition duration-300 ease-in-out 
+                        after:content-[''] after:absolute after:left-0 after:bottom-0 
+                        after:w-0 after:h-[2px] after:bg-orange-400 
+                        hover:after:w-full after:transition-all after:duration-300 
+                        after:ease-in-out text-decoration-none">Corporate</Link></li>
+
+                        <li><Link to="/promos" className="relative inline-block  py-1 text-blue-600 
+                        transition duration-300 ease-in-out 
+                        after:content-[''] after:absolute after:left-0 after:bottom-0 
+                        after:w-0 after:h-[2px] after:bg-orange-400 
+                        hover:after:w-full after:transition-all after:duration-300 
+                        after:ease-in-out text-decoration-none">News & Promos</Link></li>
+
+                        {/* Dropdown: More */}
+                        <li className=" relative ">
+                            <div>
+                                <button
+                                    onClick={toggleMoreDropdown}
+                                    className="hover:text-orange-400  focus:outline-none flex items-center gap-1.5"
+                                >
+                                    More
+                                    <FaChevronDown
+                                        className={`transition-transform duration-200 ${moreOpen ? "rotate-180" : ""} text-xs mt-1.5`} />
+                                </button>
+                                {moreOpen && (
+                                    <ul className="absolute left-0 mt-2 bg-white text-black rounded shadow w-40 z-10 text-center">
+                                        <li>
+                                            <Link
+                                                to="/faq"
+                                                className="block px-4 py-2 hover:bg-blue-100 text-decoration-none rounded"
+                                                onClick={() => setMoreOpen(false)} // Close on click
+                                            >
+                                                FAQ
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                to="/support"
+                                                className="block px-4 py-2 hover:bg-blue-100 text-decoration-none rounded"
+                                                onClick={() => setMoreOpen(false)}
+                                            >
+                                                Support
+                                            </Link>
+                                        </li>
+                                        <li>
+                                            <Link
+                                                to="/aboutus"
+                                                className="block px-4 py-2 hover:bg-blue-100 text-decoration-none rounded"
+                                                onClick={() => setMoreOpen(false)}
+                                            >
+                                                About Us
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                )}
+                            </div>
+                        </li>
+                    </ul>
+
+                    {/* Right: User/Login Dropdown DESKTOP */}
+                    <div className="hidden md:flex items-center relative">
+                        <div>
+                            <button
+                                onClick={toggleUserDropdown}
+                                className="hover:text-orange-400 focus:outline-none flex items-center gap-1.5 text-blue-600"
+                            >
+                                <FaUser className="text-3xl" />
+                                <FaChevronDown
+                                    className={`transition-transform duration-200 ${userOpen ? "rotate-180" : ""
+                                        } text-xs mt-1.5`}
+                                />
+                            </button>
+
+                            {userOpen && (
+                                <ul className="absolute left-0 mt-2 bg-white text-black rounded shadow w-40 z-10 text-center">
+                                    <li>
+                                        <Link
+                                            to="/profile"
+                                            className="block px-4 py-2 hover:bg-blue-100 text-decoration-none rounded"
+                                            onClick={() => setUserOpen(false)}
+                                        >
+                                            Profile
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/settings"
+                                            className="block px-4 py-2 hover:bg-blue-100 text-decoration-none rounded"
+                                            onClick={() => setUserOpen(false)}
+                                        >
+                                            Settings
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/login"
+                                            className="block px-4 py-2 hover:bg-blue-100 text-decoration-none rounded"
+                                            onClick={() => setUserOpen(false)}
+                                        >
+                                            <FaSignInAlt className="inline-block mr-2" /> Login
+                                        </Link>
+                                    </li>
+                                    <li onClick={handleLogout}>
+                                        <Link
+                                            className="block px-4 py-2 hover:bg-blue-100 text-red-600 text-decoration-none rounded"
+                                            onClick={() => setUserOpen(false)}
+                                        >
+                                            <FaSignOutAlt className="inline-block mr-2 text-red-600" /> Logout
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
+                        </div>
+                    </div>
+
+
+
+                    {/* Mobile Hamburger */}
+                    <button className="md:hidden" onClick={() => setMenuOpen(!menuOpen)}>
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                            {menuOpen ? (
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            ) : (
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            )}
+                        </svg>
+                    </button>
+                </div>
+
+                {/* Mobile Menu */}
+                {menuOpen && (
+                    <ul className="md:hidden bg-blue-600 px-4 pb-4 space-y-2">
+                        <li><Link to="/" className="block py-2 hover:text-blue-200 text-white text-decoration-none">Home</Link></li>
+                        <li><Link to="/plans" className="block py-2 hover:text-blue-200 hover:bg-blue-500 text-white text-decoration-none">Plans</Link></li>
+
+                        {/* Dropdown: Services */}
+                        <li>
+                            <button
+                                onClick={() => toggleDropdown("services")}
+                                className="w-full flex items-center justify-between text-left py-2  text-white hover:text-blue-200 hover:bg-blue-500 rounded"
+                            >
+                                <span>Services</span>
+                                <FaChevronDown
+                                    className={`ml-2 transition-transform duration-200 ${dropdownOpen.services ? "rotate-180" : ""
+                                        }`}
+                                />
+                            </button>
+
+                            {dropdownOpen.services && (
+                                <ul className="pl-4 space-y-1 text-white">
+                                    <li>
+                                        <Link
+                                            to="/channellineup"
+                                            className="block py-1 px-3 hover:text-blue-300 hover:bg-blue-500 text-white rounded text-decoration-none"
+                                        >
+                                            Channel Line Up
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/cable"
+                                            className="block py-1 px-3 hover:text-blue-300 hover:bg-blue-500 text-white rounded text-decoration-none"
+                                        >
+                                            Cable
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/applynow"
+                                            className="block py-1 px-3 hover:text-blue-300 hover:bg-blue-500 text-white rounded text-decoration-none"
+                                        >
+                                            Apply Now
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
+                        </li>
+
+                        <li><Link to="/corporate" className="block py-2 hover:text-blue-200 hover:bg-blue-500 text-white text-decoration-none">Corporate</Link></li>
+                        <li><Link to="/promos" className="block py-2 hover:text-blue-200 hover:bg-blue-500 text-white text-decoration-none">Promos</Link></li>
+
+                        {/* Dropdown More */}
+                        <li>
+                            <button
+                                onClick={() => toggleDropdown("more")}
+                                className="w-full flex items-center justify-between text-left py-2  text-white hover:text-blue-200 hover:bg-blue-500 rounded"
+                            >
+                                <span>More</span>
+                                <FaChevronDown
+                                    className={`ml-2 transition-transform duration-200 ${dropdownOpen.more ? "rotate-180" : ""
+                                        }`}
+                                />
+                            </button>
+
+                            {dropdownOpen.more && (
+                                <ul className="pl-4 space-y-1 text-white">
+                                    <li>
+                                        <Link
+                                            to="/faq"
+                                            className="block py-1 px-3 hover:text-blue-300 hover:bg-blue-500 text-white rounded text-decoration-none"
+                                        >
+                                            FAQ
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/support"
+                                            className="block py-1 px-3 hover:text-blue-300 hover:bg-blue-500 text-white rounded text-decoration-none"
+                                        >
+                                            Support
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/aboutus"
+                                            className="block py-1 px-3 hover:text-blue-300 hover:bg-blue-500 text-white rounded text-decoration-none"
+                                        >
+                                            About Us
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
+                        </li>
+
+                        {/* Dropdown LOGIN FOR MOBILE */}
+                        <li className="relative pt-2">
+                            <button
+                                onClick={() => setOpen(!open)}
+                                className="flex items-center gap-2 text-white hover:text-blue-200 focus:outline-none"
+                            >
+                                <FaUser /> Login
+                                <FaChevronDown
+                                    className={`ml-2 transition-transform duration-200 ${dropdownOpen.more ? "rotate-180" : ""
+                                        }`}
+                                />
+                            </button>
+
+                            {open && (
+                                <ul className="absolute mt-2 right-0 bg-white rounded-lg shadow-lg w-44 z-50 text-left">
+                                    <li>
+                                        <Link
+                                            to="/profile"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            onClick={() => setOpen(false)}
+                                        >
+                                            Profile
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/settings"
+                                            className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                            onClick={() => setOpen(false)}
+                                        >
+                                            Settings
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link
+                                            to="/login"
+                                            className="block px-4 py-2 text-sm text-red-600 hover:bg-red-50"
+                                            onClick={() => setOpen(false)}
+                                        >
+                                            Logout
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
+                        </li>
+                    </ul>
+                )}
+            </nav>
+            <Outlet />
+        </>
+    );
+}
+
+export default SubNavbar

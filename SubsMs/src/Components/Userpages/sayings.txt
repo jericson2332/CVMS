@@ -1,0 +1,171 @@
+
+🔹 Inspirational Sayings About Telecommunication
+"Telecommunication connects the world—one signal, one voice, one heartbeat at a time."
+
+"In a world divided by distance, telecom bridges the gap with invisible threads of connection."
+
+"Communication is no longer limited by geography—thanks to the power of telecom."
+
+"From voice to video, from data to dreams—telecommunication powers modern life."
+
+"Every call, every message, every click—telecom is the unseen force keeping us together."
+
+🔹 Professional/Corporate Style Sayings
+"Where connection matters, telecommunication delivers."
+
+"Empowering innovation through seamless communication."
+
+"The network behind every conversation, every connection, every opportunity."
+
+"Telecom: The infrastructure of the digital age."
+
+"Connecting businesses, people, and possibilities."
+
+
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+✅ Tailored for CableVision: Discover Our Services
+💬 Slogan-Style Sayings:
+"Discover CableVision — where connection meets convenience."
+
+"More than cable. More than internet. Discover the full power of CableVision."
+
+"Your world, fully connected. Explore CableVision services today."
+
+"From homes to businesses, CableVision keeps you connected."
+
+"Reliable. Affordable. Ready for you — discover CableVision services now."
+
+🔧 For a Services Section Title or Banner:
+"Experience the CableVision Difference — Explore Our Full Range of Services."
+
+"Connecting Communities with Smarter Solutions. Discover What We Offer."
+
+"Fast. Flexible. Future-Ready. Discover Your Ideal Plan Today."
+
+"Every Home. Every Business. Every Need — Covered by CableVision."
+
+
+{/* For Online Services */}
+      <div className=" py-16 px-4 text-center"> {/**bg-gray-100 */}
+        <div className="text-blue-600">
+          <p className="text-center text-3xl sm:text-4xl md:text-5xl font-bold transition-transform transform hover:scale-105 duration-500 ease-in-out mb-4 ">
+            Check Our Online Services
+          </p>
+          <p className="text-gray-800 text-lg max-w-3xl mx-auto mb-10 font-medium pb-3">
+            As the Philippines’ leading internet service provider, we know how crucial connectivity is to your everyday life. <br />
+            <span className="font-bold text-black">Learn about our online services.</span>
+          </p>
+        </div>
+
+        {/* PAY BILLS ONLINE */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10 max-w-6xl mx-auto ">
+
+          <Link className="flex flex-col items-center bg-blue-500 p-6 rounded-2xl shadow-lg/50 hover:shadow-xl/50 
+          transition-transform transform hover:scale-105 duration-500 ease-in-out text-decoration-none">
+            <img src={GcashIcon} className="text-7xl mb-5" />
+            <h4 className=" font-bold text-sm text-center uppercase tracking-wide text-white">
+              Pay Bills Online - GUIDE
+            </h4>
+          </Link>
+
+          {/* TOPIC & FAQS*/}
+          <Link to="/faq" className="flex flex-col items-center bg-blue-500 p-6 rounded-2xl shadow-lg/50 hover:shadow-xl/50
+           transition-transform transform hover:scale-105 duration-500 ease-in-out text-decoration-none">
+            <MdQuestionAnswer className="text-white text-6xl mb-4" />
+            <h3 className=" font-bold text-sm text-center uppercase tracking-wide text-white">
+              Topics & FAQs
+            </h3>
+          </Link>
+
+          {/* SELF SERVICE APPLICATION */}
+          <Link to="/applynow" className="flex flex-col items-center bg-blue-500 p-6 rounded-2xl shadow-lg/50 hover:shadow-xl/50
+           transition-transform transform hover:scale-105 duration-500 ease-in-out text-decoration-none">
+            <HiOutlineClipboardDocument className="text-white text-6xl mb-4" />
+            <h3 className="font-bold text-sm text-center uppercase tracking-wide text-white">
+              Self Service Application
+            </h3>
+          </Link>
+
+          {/* CUSTOMER SERVICE */}
+          <Link className="flex flex-col items-center bg-blue-500 p-6 rounded-2xl shadow-lg/50 hover:shadow-xl/50 
+          transition-transform transform hover:scale-105 duration-500 ease-in-out text-decoration-none">
+            <TfiHeadphoneAlt className="text-white text-6xl mb-4" />
+            <h3 className=" font-bold text-sm text-center uppercase tracking-wide text-white">
+              Customer Support
+            </h3>
+          </Link>
+        </div>
+      </div>
+
+
+
+
+
+
+
+    /// new design
+                            <button className="flex items-center gap-2 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-all duration-200 group">
+                            {/* The "Professional" Avatar */}
+                            <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-400 to-blue-600 flex items-center justify-center text-white text-xs font-bold border border-white shadow-sm">
+                                MYCV {/* Replace with dynamic user initials */}
+                            </div>
+
+                            {/* Slim, elegant Chevron */}
+                            <HiChevronDown
+                                className={`transition-transform duration-300 ${userDropdownOpen ? "rotate-180" : ""
+                                    } text-gray-500 group-hover:text-orange-500 text-xs`}
+                            />
+                        </button>
+    /// old design
+                            <button className="flex items-center gap-2 hover:text-orange-400 pb-2">
+                            <FaUser className="text-4xl" />
+                            <FaChevronDown className={`transition-transform duration-200 ${userDropdownOpen ? "rotate-180" : ""} text-sm mt-3`} />
+                        </button>
+
+
+    // CAROUSEL
+          <div className="relative w-full h-[110px] sm:h-[400px] md:h-[500px] overflow-hidden">
+        {/* Slides */}
+        <div
+          className="flex transition-transform duration-[3000ms] ease-in-out"
+          style={{
+            transform: `translateX(-${index * 100}%)`,
+            width: "100%", // 4 images = 400%
+          }}
+        >
+          <div className="w-full h-full flex-shrink-0">
+            <img src={banner1} alt="Slide 1" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full h-full flex-shrink-0">
+            <img src={banner2} alt="Slide 2" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full h-full flex-shrink-0">
+            <img src={banner3} alt="Slide 3" className="w-full h-full object-cover" />
+          </div>
+          <div className="w-full h-full flex-shrink-0">
+            <img src={banner4} alt="Slide 4" className="w-full h-full object-cover" />
+          </div>
+        </div>
+
+        {/* Arrows */}
+        <button
+          onClick={prevSlide}
+          className="absolute top-1/2 left-2 -translate-y-1/2 text-black text-4xl bg-white/60 hover:bg-white/80 rounded-full px-2 py-1 z-10"
+        >
+          ‹
+        </button>
+        <button
+          onClick={nextSlide}
+          className="absolute top-1/2 right-2 -translate-y-1/2 text-black text-4xl bg-white/60 hover:bg-white/80 rounded-full px-2 py-1 z-10"
+        >
+          ›
+        </button>
+
+        {/* Dots */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          <div className={`w-3 h-3 rounded-full ${index === 0 ? "bg-white" : "bg-gray-400"}`} />
+          <div className={`w-3 h-3 rounded-full ${index === 1 ? "bg-white" : "bg-gray-400"}`} />
+          <div className={`w-3 h-3 rounded-full ${index === 2 ? "bg-white" : "bg-gray-400"}`} />
+          <div className={`w-3 h-3 rounded-full ${index === 3 ? "bg-white" : "bg-gray-400"}`} />
+        </div>
+      </div>
